@@ -17,7 +17,7 @@
 
 ---
 
-ZeroRequiem lets users send and receive BNB without creating a traceable on-chain link between sender and recipient. It combines **ECDH stealth addresses** with **ERC-4337 account abstraction** so that stealth wallets never need to receive gas from a known source.
+ZeroRequiem is a Privacy Layer on BSC smart chain which lets users send and receive BNB without creating a traceable on-chain link between sender and recipient. It combines **ECDH stealth addresses** with **ERC-4337 account abstraction** so that stealth wallets never need to receive gas from a known source.
 
 ---
 
@@ -59,6 +59,7 @@ ZeroRequiem lets users send and receive BNB without creating a traceable on-chai
 | [`docs/TECHNICAL.md`](./docs/TECHNICAL.md) | Architecture diagrams, setup instructions, demo guide |
 | [`bsc.address`](./bsc.address) | All deployed contract addresses with BSCScan links |
 | [`sdk/README.md`](./sdk/README.md) | SDK installation, API reference, integration examples |
+| [`.env.example`](./.env.example) | Environment variable template with all required keys |
 | [`docs/EXTRAS.md`](./docs/EXTRAS.md) | Demo video and presentation links |
 
 ---
@@ -111,12 +112,102 @@ await zr.withdraw(stealthPrivKey, myWallet, "0.01");      // gasless withdraw
 ZeroRequiem/
 ├── contracts/          Solidity: PrivacyVault, Paymaster, Registry, SimpleAccount
 ├── sdk/                TypeScript SDK: stealth addresses, ECDH, ERC-4337 UserOps
+├── cli/                CLI tool: terminal-based stealth payments
 ├── relayer/            Express.js: Paymaster signer + ERC-4337 bundler
 ├── frontend/           React dashboard: send, receive, withdraw, activity
 ├── docs/               Project & technical documentation
 ├── assets/             Screenshots and logo
 └── bsc.address         Deployed contract addresses (JSON)
 ```
+
+---
+
+## CLI
+
+Run stealth payments from your terminal:
+
+```bash
+cd cli && npm install && npm run build
+```
+
+> **Tip:** Run `node dist/index.js --help` to see all available commands, or `node dist/index.js <command> --help` for detailed usage of any command.
+
+<table>
+<tr>
+<td><strong>Command</strong></td>
+<td><strong>Description</strong></td>
+<td><strong>Example</strong></td>
+</tr>
+<tr>
+<td><code>--help</code></td>
+<td>List all commands and global options</td>
+<td><code>node dist/index.js --help</code></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>Relayer health, Paymaster deposit, contract addresses</td>
+<td><code>node dist/index.js status</code></td>
+</tr>
+<tr>
+<td><code>register</code></td>
+<td>Generate & register stealth keys on-chain (one-time)</td>
+<td><code>node dist/index.js register -k 0xYOUR_KEY</code></td>
+</tr>
+<tr>
+<td><code>send</code></td>
+<td>Send BNB privately to a registered recipient</td>
+<td><code>node dist/index.js send -t 0xTO -a 0.01 -k 0xKEY</code></td>
+</tr>
+<tr>
+<td><code>scan</code></td>
+<td>Scan for incoming stealth payments addressed to you</td>
+<td><code>node dist/index.js scan --spend-key 0x... --view-key 0x...</code></td>
+</tr>
+<tr>
+<td><code>withdraw</code></td>
+<td>Gasless withdrawal from a stealth account via Paymaster</td>
+<td><code>node dist/index.js withdraw --stealth-key 0x... -t 0xWALLET -a 0.01</code></td>
+</tr>
+<tr>
+<td><code>balance</code></td>
+<td>Check vault / wallet balance for any address</td>
+<td><code>node dist/index.js balance --address 0xADDRESS</code></td>
+</tr>
+</table>
+
+**Global options** (work with every command):
+
+| Flag | Description | Default |
+|------|-------------|---------|
+| `--rpc-url <url>` | Custom BSC RPC endpoint | BSC Testnet public RPC |
+| `--relayer-url <url>` | Custom relayer URL | `https://zerorequiem-relayer.vercel.app` |
+| `--help` | Show help for any command | — |
+
+<details>
+<summary><strong>Full end-to-end example</strong></summary>
+
+```bash
+# 1. Check system is healthy
+node dist/index.js status
+
+# 2. Recipient registers stealth keys (one-time)
+node dist/index.js register -k 0xRECIPIENT_KEY
+#    → Save the spending key and viewing key from the output!
+
+# 3. Sender sends 0.01 BNB privately
+node dist/index.js send -t 0xRECIPIENT_ADDR -a 0.01 -k 0xSENDER_KEY
+
+# 4. Recipient scans for payments
+node dist/index.js scan --spend-key 0xSPEND --view-key 0xVIEW
+
+# 5. Recipient withdraws (gasless — Paymaster pays gas)
+node dist/index.js withdraw --stealth-key 0xSTEALTH --to 0xWALLET -a 0.01
+
+# 6. Verify balance
+node dist/index.js balance --address 0xWALLET
+```
+
+</details>
 
 ---
 
