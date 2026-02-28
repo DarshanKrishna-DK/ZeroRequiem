@@ -1,13 +1,11 @@
-# Optional: Demo Video & Presentation
-
 - **Demo video** --
-  Link:
+  Link: https://youtu.be/t4iTmgw8c1Q
 
 - **Slide deck** --
-  Link:
+  Link: https://gamma.app/docs/ZeroRequiem-z2roixbhl2fqzf6
 
-- **Live frontend** --
-  Link: http://localhost:5173 (run locally)
+- **Live Platform** --
+  Link: https://zerorequiem.vercel.app
 
 - **SDK package** --
   Link: https://www.npmjs.com/package/zerorequiem-sdk
