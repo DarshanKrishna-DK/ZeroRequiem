@@ -18,7 +18,14 @@ export function useWallet() {
     setIsConnecting(true);
     try {
       const prov = new BrowserProvider((window as any).ethereum);
-      await prov.send("eth_requestAccounts", []);
+
+      const wasConnected = sessionStorage.getItem("zr_connected");
+      if (wasConnected) {
+        await prov.send("wallet_requestPermissions", [{ eth_accounts: {} }]);
+      } else {
+        await prov.send("eth_requestAccounts", []);
+      }
+      sessionStorage.setItem("zr_connected", "1");
 
       const network = await prov.getNetwork();
       const currentChainId = Number(network.chainId);
@@ -56,6 +63,7 @@ export function useWallet() {
     setSigner(null);
     setProvider(null);
     setChainId(0);
+    sessionStorage.removeItem("zr_connected");
   }, []);
 
   useEffect(() => {

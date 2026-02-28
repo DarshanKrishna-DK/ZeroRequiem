@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: zerorequiem-relayer
+    runtime: node
+    rootDir: relayer
+    buildCommand: npm install && npx tsc
+    startCommand: node dist/index.js
+    envVars:
+      - key: RELAYER_PRIVATE_KEY
+        sync: false
+      - key: RPC_URL
+        value: https://bsc-testnet-dataseed.bnbchain.org
+      - key: VAULT_ADDRESS
+        value: "0xc02cE66D57b7dC05446c041864aCdCc23B94Ad48"
+      - key: REGISTRY_ADDRESS
+        value: "0x867E1c09B0aa3C79A171de8d20CA0C14Dd21fcAb"
+      - key: FACTORY_ADDRESS
+        value: "0xaB885C2db018E3690269a91c9bDbdf53a5DC0614"
+      - key: PAYMASTER_ADDRESS
+        value: "0xe0fdDfa9f06c9E35eCDec67f2c7AFCB3Af0E439C"
+      - key: ENTRY_POINT_ADDRESS
+        value: "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789"
+      - key: RELAYER_PORT
+        value: "3001"

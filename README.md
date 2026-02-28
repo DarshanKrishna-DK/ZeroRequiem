@@ -58,7 +58,6 @@ ZeroRequiem lets users send and receive BNB without creating a traceable on-chai
 | [`docs/PROJECT.md`](./docs/PROJECT.md) | Problem statement, solution, ecosystem impact, roadmap |
 | [`docs/TECHNICAL.md`](./docs/TECHNICAL.md) | Architecture diagrams, setup instructions, demo guide |
 | [`bsc.address`](./bsc.address) | All deployed contract addresses with BSCScan links |
-| [`SETUP.md`](./SETUP.md) | Detailed wallet setup and environment configuration |
 | [`sdk/README.md`](./sdk/README.md) | SDK installation, API reference, integration examples |
 | [`docs/EXTRAS.md`](./docs/EXTRAS.md) | Demo video and presentation links |
 
@@ -135,5 +134,33 @@ ZeroRequiem/
 
 ## Tech Stack
 
-Solidity 0.8.23 · Hardhat · ERC-4337 v0.6 · secp256k1 ECDH · ethers.js v6 · React 19 · Vite 7 · TailwindCSS v4 · BNB Smart Chain
-
+<table>
+<tr>
+<td align="center"><strong>Smart Contracts</strong></td>
+<td align="center"><strong>Backend</strong></td>
+<td align="center"><strong>Frontend</strong></td>
+<td align="center"><strong>Cryptography</strong></td>
+</tr>
+<tr>
+<td align="center">
+<img src="https://img.shields.io/badge/Solidity-0.8.23-363636?style=for-the-badge&logo=solidity" /><br/>
+<img src="https://img.shields.io/badge/Hardhat-FFF100?style=for-the-badge&logo=hardhat&logoColor=black" /><br/>
+<img src="https://img.shields.io/badge/ERC--4337-v0.6-3C3C3D?style=for-the-badge&logo=ethereum" />
+</td>
+<td align="center">
+<img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" /><br/>
+<img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white" /><br/>
+<img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />
+</td>
+<td align="center">
+<img src="https://img.shields.io/badge/React_19-61DAFB?style=for-the-badge&logo=react&logoColor=black" /><br/>
+<img src="https://img.shields.io/badge/Vite_7-646CFF?style=for-the-badge&logo=vite&logoColor=white" /><br/>
+<img src="https://img.shields.io/badge/ethers.js_v6-2535A0?style=for-the-badge&logo=ethereum&logoColor=white" />
+</td>
+<td align="center">
+<img src="https://img.shields.io/badge/secp256k1-ECDH-F0B90B?style=for-the-badge" /><br/>
+<img src="https://img.shields.io/badge/Stealth_Addresses-ECDH-F0B90B?style=for-the-badge" /><br/>
+<img src="https://img.shields.io/badge/BNB_Chain-F0B90B?style=for-the-badge&logo=binance&logoColor=black" />
+</td>
+</tr>
+</table>

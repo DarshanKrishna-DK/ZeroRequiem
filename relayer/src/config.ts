@@ -1,9 +1,10 @@
 import * as dotenv from "dotenv";
 import * as path from "path";
 dotenv.config({ path: path.resolve(__dirname, "../../.env") });
+dotenv.config();
 
 export const config = {
-  port: parseInt(process.env.RELAYER_PORT || "3001", 10),
+  port: parseInt(process.env.PORT || process.env.RELAYER_PORT || "3001", 10),
   rpcUrl: process.env.RPC_URL || "https://bsc-testnet-dataseed.bnbchain.org",
   chainId: 97,
 
