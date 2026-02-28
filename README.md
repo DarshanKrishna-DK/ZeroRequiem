@@ -24,7 +24,7 @@ ZeroRequiem lets users send and receive BNB without creating a traceable on-chai
 ## Architecture & Workflow
 
 <p align="center">
-  <img src="assets/architecture.svg" alt="ZeroRequiem Architecture" width="800" />
+  <img src="assets/architecture.png" alt="ZeroRequiem Architecture" width="800" />
 </p>
 
 **How It Works:**
@@ -137,8 +137,3 @@ ZeroRequiem/
 
 Solidity 0.8.23 · Hardhat · ERC-4337 v0.6 · secp256k1 ECDH · ethers.js v6 · React 19 · Vite 7 · TailwindCSS v4 · BNB Smart Chain
 
----
-
-## License
-
-MIT
