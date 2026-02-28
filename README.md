@@ -9,6 +9,7 @@
 </p>
 
 <p align="center">
+  <a href="https://zerorequiem.vercel.app"><img src="https://img.shields.io/badge/Live%20Demo-zerorequiem.vercel.app-F0B90B?style=flat-square&logo=vercel" /></a>
   <img src="https://img.shields.io/badge/chain-BSC%20Testnet-F0B90B?style=flat-square" />
   <img src="https://img.shields.io/badge/ERC--4337-Account%20Abstraction-blue?style=flat-square" />
   <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" />
@@ -18,12 +19,21 @@
 
 ZeroRequiem lets users send and receive BNB without creating a traceable on-chain link between sender and recipient. It combines **ECDH stealth addresses** with **ERC-4337 account abstraction** so that stealth wallets never need to receive gas from a known source.
 
-```
-Sender (any wallet) --> Privacy Vault --> Stealth Address --> Recipient (any address)
-                                                |
-                                          Paymaster pays gas
-                                          (zero identity link)
-```
+---
+
+## Architecture & Workflow
+
+<p align="center">
+  <img src="assets/architecture.svg" alt="ZeroRequiem Architecture" width="800" />
+</p>
+
+**How It Works:**
+
+1. **Register** — Recipient publishes stealth public keys to an on-chain registry (one-time)
+2. **Send** — Sender deposits BNB into a shared vault targeting a one-time stealth address derived via ECDH
+3. **Scan** — Recipient decrypts on-chain announcements with their viewing key to discover payments
+4. **Withdraw** — Recipient submits an ERC-4337 UserOp; the Paymaster sponsors gas so the stealth wallet stays anonymous
+5. **Receive** — BNB arrives in the recipient's wallet with zero on-chain link to the sender
 
 ---
 
@@ -38,15 +48,6 @@ Sender (any wallet) --> Privacy Vault --> Stealth Address --> Recipient (any add
   <img src="assets/sdk-docs.png" alt="SDK Documentation" width="700" /><br/>
   <em>Developer Documentation — tabbed SDK docs with code examples, API reference, and self-host guide</em>
 </p>
-
----
-
-## How It Works
-
-1. **Register** — Recipient publishes stealth public keys to an on-chain registry (one-time)
-2. **Send** — Sender deposits BNB into a shared vault targeting a one-time stealth address
-3. **Scan** — Recipient decrypts on-chain announcements with their viewing key to find payments
-4. **Withdraw** — ERC-4337 Paymaster sponsors gas, so the stealth wallet stays anonymous
 
 ---
 
