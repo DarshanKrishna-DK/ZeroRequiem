@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { JsonRpcSigner } from "ethers";
 import * as secp from "@noble/secp256k1";
 import { sha256 } from "@noble/hashes/sha256";

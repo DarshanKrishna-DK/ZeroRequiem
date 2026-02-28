@@ -20,7 +20,7 @@ function App() {
   const stealth = useStealth();
   const activity = useActivity();
   const toastState = useToastState();
-  const [configLoaded, setConfigLoaded] = useState(false);
+  const [, setConfigLoaded] = useState(false);
 
   useEffect(() => {
     loadContractConfig().then(() => setConfigLoaded(true));

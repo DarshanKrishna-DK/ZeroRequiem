@@ -17,7 +17,7 @@ interface Props {
 const SIMPLE_ACCOUNT_ABI = ["function execute(address dest, uint256 value, bytes calldata func)"];
 const STEPS = ["Building UserOp", "Sponsoring gas", "Signing", "Relaying", "Confirmed"];
 
-export function Withdraw({ signer, address, stealthKeys, onGenerateKeys, onActivity }: Props) {
+export function Withdraw({ address, onActivity }: Props) {
   const [stealthPrivKey, setStealthPrivKey] = useState("");
   const [recipientAddr, setRecipientAddr] = useState("");
   const [withdrawAmount, setWithdrawAmount] = useState("");
