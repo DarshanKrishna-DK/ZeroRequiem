@@ -2,7 +2,7 @@ export const CHAIN_ID = 97;
 export const CHAIN_NAME = "BSC Testnet";
 export const RPC_URL = "https://bsc-testnet-dataseed.bnbchain.org";
 export const EXPLORER_URL = "https://testnet.bscscan.com";
-export const RELAYER_URL = "http://localhost:3001";
+export const RELAYER_URL = import.meta.env.VITE_RELAYER_URL || "https://zerorequiem-relayer.vercel.app";
 
 export const ENTRY_POINT_ADDRESS = "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789";
 
