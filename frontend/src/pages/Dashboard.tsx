@@ -56,10 +56,93 @@ export function Dashboard({
 
   if (!address) {
     return (
-      <div className="animate-fade-in" style={{ textAlign: "center", paddingTop: 80 }}>
-        <img src="/ZeroRequiem_Logo.png" alt="" style={{ width: 64, height: 64, borderRadius: 16, margin: "0 auto 24px" }} />
-        <h1 className="text-3xl font-black mb-2"><span className="gradient-text">ZeroRequiem</span></h1>
-        <p className="text-sm mb-6" style={{ color: "var(--text-secondary)" }}>Privacy-preserving gas abstraction on BNB Smart Chain</p>
+      <div className="animate-fade-in" style={{ maxWidth: 640, margin: "0 auto" }}>
+        {/* Hero */}
+        <div style={{ textAlign: "center", paddingTop: 48, marginBottom: 48 }}>
+          <div className="glow-ring" style={{ width: 80, height: 80, borderRadius: 20, margin: "0 auto 20px", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(240,185,11,0.06)", border: "1px solid rgba(240,185,11,0.12)" }}>
+            <img src="/ZeroRequiem_Logo.png" alt="" style={{ width: 52, height: 52, borderRadius: 12 }} />
+          </div>
+          <h1 className="text-4xl font-black mb-3"><span className="gradient-text">ZeroRequiem</span></h1>
+          <p className="text-base mb-6" style={{ color: "var(--text-secondary)", lineHeight: 1.7 }}>
+            Privacy-preserving BNB transfers with gasless withdrawals on BNB Smart Chain.
+          </p>
+          <p className="text-sm mb-8" style={{ color: "var(--text-secondary)", lineHeight: 1.8 }}>
+            Send BNB to anyone without creating a traceable link between sender and recipient.
+            Stealth addresses hide who you pay. A Paymaster covers gas so your fresh wallet stays anonymous.
+          </p>
+        </div>
+
+        {/* How it works */}
+        <div className="card card-glow mb-6 animate-fade-in anim-delay-1">
+          <h3 className="font-bold text-base mb-4">How It Works</h3>
+          <div className="space-y-4">
+            {[
+              { n: "1", title: "Register", desc: "Publish your stealth public keys on-chain. One-time setup, takes 30 seconds.", icon: (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+              )},
+              { n: "2", title: "Send", desc: "Enter a recipient's wallet address and amount. BNB goes into a shared Privacy Vault targeting a one-time stealth address.", icon: (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              )},
+              { n: "3", title: "Scan & Withdraw", desc: "Recipient scans encrypted announcements with their viewing key. One click to withdraw -- gas is paid by the Paymaster.", icon: (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12V7H5a2 2 0 010-4h14v4"/><path d="M3 5v14a2 2 0 002 2h16v-5"/><path d="M18 12a2 2 0 100 4h4v-4h-4z"/></svg>
+              )},
+            ].map((s) => (
+              <div key={s.n} className="flex gap-4 items-start">
+                <div className="step-number flex-shrink-0">{s.n}</div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span style={{ color: "var(--accent)" }}>{s.icon}</span>
+                    <span className="text-sm font-bold">{s.title}</span>
+                  </div>
+                  <p className="text-xs" style={{ color: "var(--text-secondary)", lineHeight: 1.7 }}>{s.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Features */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+          {[
+            { title: "Stealth Addresses", desc: "ECDH-derived one-time addresses. No on-chain link to your identity.", icon: (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            )},
+            { title: "Gasless Withdrawals", desc: "ERC-4337 Paymaster sponsors gas. Your stealth wallet never needs funding.", icon: (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            )},
+            { title: "Privacy Vault", desc: "Shared deposit pool breaks the sender-recipient link for all users.", icon: (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            )},
+            { title: "Public SDK", desc: "Integrate stealth payments into any dApp with a single npm package.", icon: (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            )},
+          ].map((f) => (
+            <div key={f.title} className="card card-glow animate-fade-in anim-delay-2">
+              <div className="feature-icon mb-3" style={{ color: "var(--accent)" }}>{f.icon}</div>
+              <h4 className="text-sm font-bold mb-1">{f.title}</h4>
+              <p className="text-xs" style={{ color: "var(--text-secondary)", lineHeight: 1.6 }}>{f.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Tech badges */}
+        <div className="card animate-fade-in anim-delay-3 mb-6" style={{ textAlign: "center" }}>
+          <p className="text-xs uppercase tracking-wider font-semibold mb-3" style={{ color: "var(--text-secondary)" }}>Built With</p>
+          <div className="flex flex-wrap justify-center gap-2">
+            {["BNB Chain", "ERC-4337", "secp256k1 ECDH", "Solidity", "React", "TypeScript"].map((t) => (
+              <span key={t} className="text-xs px-3 py-1.5 rounded-full font-semibold" style={{ background: "rgba(240,185,11,0.06)", border: "1px solid rgba(240,185,11,0.1)", color: "var(--accent)" }}>{t}</span>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div style={{ textAlign: "center" }} className="animate-fade-in anim-delay-4">
+          <p className="text-xs mb-4" style={{ color: "var(--text-secondary)" }}>Connect your wallet to get started</p>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 16px", borderRadius: 12, background: "rgba(240,185,11,0.04)", border: "1px solid rgba(240,185,11,0.08)" }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+            <span className="text-xs" style={{ color: "var(--text-secondary)" }}>Requires MetaMask on BSC Testnet (Chain ID: 97)</span>
+          </div>
+        </div>
       </div>
     );
   }

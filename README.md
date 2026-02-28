@@ -1,8 +1,22 @@
-# ZeroRequiem
+<p align="center">
+  <img src="assets/logo.png" alt="ZeroRequiem" width="80" />
+</p>
 
-**Privacy-preserving BNB transfers with gasless withdrawals on BNB Smart Chain.**
+<h1 align="center">ZeroRequiem</h1>
 
-ZeroRequiem lets users send and receive BNB without creating a traceable on-chain link between sender and recipient. It combines ECDH stealth addresses with ERC-4337 account abstraction so that stealth wallets never need to receive gas from a known source.
+<p align="center">
+  <strong>Privacy-preserving BNB transfers with gasless withdrawals on BNB Smart Chain</strong>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/chain-BSC%20Testnet-F0B90B?style=flat-square" />
+  <img src="https://img.shields.io/badge/ERC--4337-Account%20Abstraction-blue?style=flat-square" />
+  <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" />
+</p>
+
+---
+
+ZeroRequiem lets users send and receive BNB without creating a traceable on-chain link between sender and recipient. It combines **ECDH stealth addresses** with **ERC-4337 account abstraction** so that stealth wallets never need to receive gas from a known source.
 
 ```
 Sender (any wallet) --> Privacy Vault --> Stealth Address --> Recipient (any address)
@@ -13,12 +27,26 @@ Sender (any wallet) --> Privacy Vault --> Stealth Address --> Recipient (any add
 
 ---
 
+## Screenshots
+
+<p align="center">
+  <img src="assets/dashboard.png" alt="Dashboard" width="700" /><br/>
+  <em>Dashboard — wallet status, stealth key registration, relayer health, quick actions</em>
+</p>
+
+<p align="center">
+  <img src="assets/sdk-docs.png" alt="SDK Documentation" width="700" /><br/>
+  <em>Developer Documentation — tabbed SDK docs with code examples, API reference, and self-host guide</em>
+</p>
+
+---
+
 ## How It Works
 
-1. **Register** -- Recipient publishes stealth public keys to an on-chain registry (one-time)
-2. **Send** -- Sender deposits BNB into a shared vault targeting a one-time stealth address
-3. **Scan** -- Recipient decrypts on-chain announcements with their viewing key to find payments
-4. **Withdraw** -- ERC-4337 Paymaster sponsors gas, so the stealth wallet stays anonymous
+1. **Register** — Recipient publishes stealth public keys to an on-chain registry (one-time)
+2. **Send** — Sender deposits BNB into a shared vault targeting a one-time stealth address
+3. **Scan** — Recipient decrypts on-chain announcements with their viewing key to find payments
+4. **Withdraw** — ERC-4337 Paymaster sponsors gas, so the stealth wallet stays anonymous
 
 ---
 
@@ -66,7 +94,8 @@ npm install zerorequiem-sdk
 ```typescript
 import { ZeroRequiem } from "zerorequiem-sdk";
 
-const zr = new ZeroRequiem({ rpcUrl, chainId, vaultAddress, registryAddress, factoryAddress, entryPointAddress, paymasterAddress, relayerUrl });
+const zr = new ZeroRequiem({ rpcUrl, chainId, vaultAddress, registryAddress,
+  factoryAddress, entryPointAddress, paymasterAddress, relayerUrl });
 
 await zr.registerKeys(signer, keys);                     // one-time setup
 await zr.send(signer, recipientAddress, "0.01");          // send privately
@@ -78,13 +107,16 @@ await zr.withdraw(stealthPrivKey, myWallet, "0.01");      // gasless withdraw
 
 ## Project Structure
 
-| Folder | What It Does |
-|--------|-------------|
-| `contracts/` | Solidity: PrivacyVault, Paymaster, StealthKeyRegistry, SimpleAccount |
-| `sdk/` | TypeScript SDK: stealth addresses, ECDH, ERC-4337 UserOps |
-| `relayer/` | Express.js: Paymaster signer + ERC-4337 bundler |
-| `frontend/` | React dashboard: send, receive, withdraw, activity history |
-| `docs/` | Project documentation for hackathon judges |
+```
+ZeroRequiem/
+├── contracts/          Solidity: PrivacyVault, Paymaster, Registry, SimpleAccount
+├── sdk/                TypeScript SDK: stealth addresses, ECDH, ERC-4337 UserOps
+├── relayer/            Express.js: Paymaster signer + ERC-4337 bundler
+├── frontend/           React dashboard: send, receive, withdraw, activity
+├── docs/               Project & technical documentation
+├── assets/             Screenshots and logo
+└── bsc.address         Deployed contract addresses (JSON)
+```
 
 ---
 
