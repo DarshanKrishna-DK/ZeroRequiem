@@ -1,0 +1,39 @@
+{
+  "projectName": "ZeroRequiem",
+  "network": "BSC Testnet",
+  "contracts": [
+    {
+      "name": "PrivacyVault",
+      "address": "0xc02cE66D57b7dC05446c041864aCdCc23B94Ad48",
+      "explorerLink": "https://testnet.bscscan.com/address/0xc02cE66D57b7dC05446c041864aCdCc23B94Ad48",
+      "description": "Shared deposit pool for stealth BNB transfers. Accepts deposits via sendToStealth() and emits Announcement events."
+    },
+    {
+      "name": "StealthKeyRegistry",
+      "address": "0x867E1c09B0aa3C79A171de8d20CA0C14Dd21fcAb",
+      "explorerLink": "https://testnet.bscscan.com/address/0x867E1c09B0aa3C79A171de8d20CA0C14Dd21fcAb",
+      "description": "On-chain registry where users publish their stealth public keys (spending + viewing)."
+    },
+    {
+      "name": "SimpleAccountFactory",
+      "address": "0xaB885C2db018E3690269a91c9bDbdf53a5DC0614",
+      "explorerLink": "https://testnet.bscscan.com/address/0xaB885C2db018E3690269a91c9bDbdf53a5DC0614",
+      "description": "CREATE2 factory for deploying ERC-4337 SimpleAccount wallets for stealth addresses."
+    },
+    {
+      "name": "ZeroRequiemPaymaster",
+      "address": "0xe0fdDfa9f06c9E35eCDec67f2c7AFCB3Af0E439C",
+      "explorerLink": "https://testnet.bscscan.com/address/0xe0fdDfa9f06c9E35eCDec67f2c7AFCB3Af0E439C",
+      "description": "ERC-4337 VerifyingPaymaster that sponsors gas for stealth wallet withdrawals."
+    },
+    {
+      "name": "EntryPoint (v0.6)",
+      "address": "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789",
+      "explorerLink": "https://testnet.bscscan.com/address/0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789",
+      "description": "Standard ERC-4337 EntryPoint v0.6 (pre-deployed by eth-infinitism)."
+    }
+  ],
+  "frontendUrl": "http://localhost:5173",
+  "backendApi": "http://localhost:3001",
+  "notes": "The relayer must be running for gasless withdrawals. Paymaster is funded with ~0.05 tBNB deposited into the EntryPoint."
+}
